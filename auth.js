@@ -42,7 +42,7 @@ function signupFunc(){
     var email = document.getElementById("email")
     var password = document.getElementById("password")
 
-    createUseWithEmailAndPassword(auth,email, password).then(function(success){
+    createUseWithEmailAndPassword(auth,email.value, password.value).then(function(success){
         console.log(success,"success");
         localStorage.getItem("uid",success.user.uid);
         alert("Successfully Login");
@@ -61,16 +61,11 @@ window.addEventListener("load",function(){
     console.log(uid,"uid");
 
     if(uid){
-        location.replace
+        location.replace("./dashbord.html");
+        return;
     }
 
-
 })
-
-
-
-
-
 
 
 

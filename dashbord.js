@@ -2,15 +2,14 @@
 // https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js  ==>firestore
 
 // Import the functions you need from the SDKs you need
-import { get } from "express/lib/response";
+// import { get } from "express/lib/response";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-
 import {
-    getFirestore,
-    addDoc,
-    collection,
-    getDocs,
-  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  getFirestore,
+  addDoc,
+  collection,
+  getDocs,
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -47,30 +46,30 @@ window.addEventListener("load", function () {
   }
 });
 
-// async function createBlog(){
-//     console.log(createBlog,);
-//     var title = document.getElementById("title").value;
-//     var desc = document.getElementById("desc").value;
-//     var uid = localStorage.getItem("uid");
+async function createBlog(){
+    console.log(createBlog,);
+    var title = document.getElementById("title").value;
+    var desc = document.getElementById("desc").value;
+    var uid = localStorage.getItem("uid");
 
-//     var blogObj = {
-//         title: title,
-//         desc: desc,
-//         uid: uid,
-//         image: "",
-//     }
-//     const docRef = await addDoc(collection(db,"blogs"),blogObj);
-//     console.log(docRef,"docRef");
+    var blogObj = {
+        title: title,
+        desc: desc,
+        uid: uid,
+        image: "",
+    }
+    const docRef = await addDoc(collection(db,"blogs"),blogObj);
+    console.log(docRef,"docRef");
 
 
-// }
+}
 
-// window.addEventListener('load',async function(){
-//     const querySnapshot = await getDocs(collection(db,"blogs"));
-//     querySnapshot.forEach((doc) =>{
-//         console.log(doc.data());
-//     })
-// })
+window.addEventListener('load',async function(){
+    const querySnapshot = await getDocs(collection(db,"blogs"));
+    querySnapshot.forEach((doc) =>{
+        console.log(doc.data());
+    })
+})
 
 
 

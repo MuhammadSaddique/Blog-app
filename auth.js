@@ -1,6 +1,7 @@
 // https://firebase.google.com/docs/web/setup
 // https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js  ==>firestore
 
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
@@ -25,71 +26,58 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// console.log("app", app);
 
-// Initialize Cloud Firestore and get a reference to the service
+// Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
-// console.log(app);
-// console.log(auth);
-
-
-
 function signupFunc() {
-    console.log("signupFunc");
-    var email = document.getElementById("email");
-    var password = document.getElementById("password");
-  
-    createUserWithEmailAndPassword(auth, email.value, password.value)
-      .then(function (success) {
-        console.log(success, "success");
-        alert("successfully signup");
-        window.location.href = "./index.html";
-      })
-      .catch(function (error) {
-        console.log(error.code, "error");
-        alert(error.code);
-      });
+  console.log("signupFunc");
+  var email = document.getElementById("email");
+  var password = document.getElementById("password");
+
+  createUserWithEmailAndPassword(auth, email.value, password.value)
+    .then(function (success) {
+      console.log(success, "success");
+      alert("successfully signup");
+      window.location.href = "./index.html";
+    })
+    .catch(function (error) {
+      console.log(error.code, "error");
+      alert(error.code);
+    });
+}
+
+function loginFunc() {
+  var email = document.getElementById("email");
+  var password = document.getElementById("password");
+
+  signInWithEmailAndPassword(auth, email.value, password.value)
+    .then(function (success) {
+      console.log(success, "success");
+      localStorage.setItem("uid", success.user.uid);
+      alert("successfully login");
+      window.location.replace("./dashbord.html");
+    })
+    .catch(function (error) {
+      console.log(error.code, "error");
+      alert(error.code);
+    });
+}
+
+window.addEventListener("load", function () {
+  console.log("blog load");
+  var uid = localStorage.getItem("uid");
+  console.log(uid, "uid");
+
+  if (uid) {
+    location.replace("./dashbord.html");
+    return;
   }
+});
 
-
-  function loginFunc() {
-    var email = document.getElementById("email");
-    var password = document.getElementById("password");
-  
-    signInWithEmailAndPassword(auth, email.value, password.value)
-      .then(function (success) {
-        console.log(success, "success");
-        localStorage.setItem("uid", success.user.uid);
-        alert("successfully login");
-        window.location.replace("./dashbord.html");
-      })
-      .catch(function (error) {
-        console.log(error.code, "error");
-        alert(error.code);
-      });
-  }
-
-
-
-
-  window.addEventListener("load", function () {
-    console.log("blog load");
-    var uid = localStorage.getItem("uid");
-    console.log(uid, "uid");
-  
-    if (uid) {
-      location.replace("./dashbord.html");
-      return;
-    }
-  });
-
-
-// funtion assign
-
-
+///function assign
 window.signupFunc = signupFunc;
-window.loginFunc = loginFunc; 
+window.loginFunc = loginFunc;
 
 
 

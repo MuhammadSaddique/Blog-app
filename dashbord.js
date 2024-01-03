@@ -6,13 +6,11 @@ import { get } from "express/lib/response";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 
 import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  doc,
-  deleteDoc,
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    getFirestore,
+    addDoc,
+    collection,
+    getDocs,
+  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -38,40 +36,41 @@ var db = getFirestore(app);
 // console.log(db , "db is working");
 
 
-window.addEventListener("load",function(){
-    console.log("blog load");
-    var uid = localStorage.getItem("uid");
-    console.log("uid",uid);
-    if(!uid){
-        location.replace("./index.html")
-        return;
-    }
-})
+window.addEventListener("load", function () {
+  console.log("blog load");
+  var uid = localStorage.getItem("uid");
+  console.log(uid, "uid");
 
-async function createBlog(){
-    console.log(createBlog,);
-    var title = document.getElementById("title").value;
-    var desc = document.getElementById("desc").value;
-    var uid = localStorage.getItem("uid");
+  if (!uid) {
+    location.replace("./index.html");
+    return;
+  }
+});
 
-    var blogObj = {
-        title: title,
-        desc: desc,
-        uid: uid,
-        image: "",
-    }
-    const docRef = await addDoc(collection(db,"blogs"),blogObj);
-    console.log(docRef,"docRef");
+// async function createBlog(){
+//     console.log(createBlog,);
+//     var title = document.getElementById("title").value;
+//     var desc = document.getElementById("desc").value;
+//     var uid = localStorage.getItem("uid");
+
+//     var blogObj = {
+//         title: title,
+//         desc: desc,
+//         uid: uid,
+//         image: "",
+//     }
+//     const docRef = await addDoc(collection(db,"blogs"),blogObj);
+//     console.log(docRef,"docRef");
 
 
-}
+// }
 
-window.addEventListener('load',async function(){
-    const querySnapshot = await getDocs(collection(db,"blogs"));
-    querySnapshot.forEach((doc) =>{
-        console.log(doc.data());
-    })
-})
+// window.addEventListener('load',async function(){
+//     const querySnapshot = await getDocs(collection(db,"blogs"));
+//     querySnapshot.forEach((doc) =>{
+//         console.log(doc.data());
+//     })
+// })
 
 
 

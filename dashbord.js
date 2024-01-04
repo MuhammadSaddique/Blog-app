@@ -34,6 +34,7 @@ var db = getFirestore(app);
 // console.log(app,"app is working");
 // console.log(db , "db is working");
 
+var parent = document.getElementById("parent");
 
 window.addEventListener("load",async function () {
   console.log("blog load");
@@ -64,11 +65,19 @@ window.addEventListener("load",async function () {
   })
   console.log(BlogArr , "arr");
 
-  for(var value of BlogArr){
-    console.log("BlogArr",renderCardUI(value));
+
+  for(var value of BlogArr){ 
+    parent.innerHTML += renderCardUI(
+      value.title,
+       value.desc,
+       value.image,
+       value.blogId
+     );
+   
   }
 
 });
+
 
 async function createBlog(){
     console.log(createBlog,);
@@ -82,9 +91,13 @@ async function createBlog(){
         uid: uid,
         image: "",
     }
-    const docRef = await addDoc(collection(db,"blogs"),blogObj);
-    console.log(docRef,"docRef");
 
+    const docRef = await addDoc(collection(db,"blogs"),blogObj);
+    parent.innerHTML = renderCardUI(title.value,desc.value," ", docRef.id);
+    
+    title.value = "";
+    desc.value = "";
+    console.log(docRef,"docRef");
 }
 
 

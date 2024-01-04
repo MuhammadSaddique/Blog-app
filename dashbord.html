@@ -36,44 +36,49 @@
       <!-- navbar end -->
 
       <section>
-        <div class="d-flex justify-content-center mt-3">
-            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Blogs</button>
-        </div>
-<!-- Modal start -->
 
-<div class="modal fade" id="examplemodal" tabindex="-1"
-aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Blogs</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <input type="text" name="form-control" id="title" placeholder="Enter Title">
-          <textarea type="text" name="form-control mt-2" id="desc" placeholder="Enter Desc"></textarea>
-          <input type="file" class="mt-2" id="">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Create</button>
-        </div>
+        <!-- Button trigger modal -->
+        <div class=" d-flex justify-content-center mt-3">
+<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Add Blogs
+</button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Blogs</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <input type="text" class="form-control mt-2" id="title" placeholder="Enter Tittle">
+        <textarea  type="text" class="form-control mt-2" id="desc" placeholder="Enter Desc"></textarea>
+        <input type="file" class="mt-2" >
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" onclick="createBlog()" class="btn btn-primary">Create</button>
       </div>
     </div>
   </div>
+</div>
   <!-- modal end -->
  </section>
 
   <!-- new cards -->
  <section class="container mt-5 d-flex gap-3">
-    <div class="card" style="width: 18rem;">
+    <!-- <div class="card" style="width: 18rem;">
         <img src="https://picsum.photos/300/200" class="card-img-top" alt="">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           <a href="#" class="card-link ">Go SomeWhere</a>
         </div>
-      </div>
+      </div> -->
+      
  </section>
       
 </body>

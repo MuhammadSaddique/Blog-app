@@ -35,7 +35,7 @@ var db = getFirestore(app);
 // console.log(db , "db is working");
 
 
-window.addEventListener("load", function () {
+window.addEventListener("load",async function () {
   console.log("blog load");
   var uid = localStorage.getItem("uid");
   console.log(uid, "uid");
@@ -44,6 +44,30 @@ window.addEventListener("load", function () {
     location.replace("./index.html");
     return;
   }
+
+  var BlogArr = [];
+  const querySnapshot = await getDocs(collection(db,"blogs"));
+  querySnapshot.forEach((doc) =>{
+      console.log(doc.data());
+      console.log(doc.id);
+
+      BlogArr.push(doc.data())
+
+      BlogArr.push({
+        title:doc.data().title,
+        desc: doc.data().desc,
+        uid: doc.data().uid,
+        image: doc.data().image,
+        blogId: doc.id,
+      })
+
+  })
+  console.log(BlogArr , "arr");
+
+  for(var value of BlogArr){
+    console.log("BlogArr",renderCardUI(value));
+  }
+
 });
 
 async function createBlog(){
@@ -61,16 +85,24 @@ async function createBlog(){
     const docRef = await addDoc(collection(db,"blogs"),blogObj);
     console.log(docRef,"docRef");
 
-
 }
 
-window.addEventListener('load',async function(){
-    const querySnapshot = await getDocs(collection(db,"blogs"));
-    querySnapshot.forEach((doc) =>{
-        console.log(doc.data());
-    })
-})
 
+function renderCardUI(title,desc,image,id){
+  var UI = `
+  <div class="card" style="width: 18rem;">
+        <img src="https://picsum.photos/300/200" class="card-img-top" alt="">
+        <div class="card-body">
+          <h5 class="card-title">${title}</h5>
+          <p class="card-text">
+          ${desc}
+          </p>
+          <a href="#" class="card-link ">Go SomeWhere</a>
+        </div>
+      </div>
+      `
+      return UI;
+}
 
 
 

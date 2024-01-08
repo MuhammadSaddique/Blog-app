@@ -1,4 +1,4 @@
-import { getDocs } from "./firebase.js";
+import { collection, db, getDocs } from "./firebase.js";
 
 
 console.log("myblog Page");
@@ -14,11 +14,32 @@ window.addEventListener("load", async function () {
       return;
     }else{
 
-      const querySnapshot = await getDocs(collection(db,"blogs"));
+      const bolg = collection(db, "cities");
+
+      // Create a query against the collection.
+      const q = query(citiesRef, where("state", "==", "CA"));
       
 
+// time is 39:44 in 3rd recording
 
-  
+
+
+
+
+
+
+
+
+
+
+
+      const querySnapshot = await getDocs(collection(db,"blogs"));
+      var myBlogArr = [];
+      querySnapshot.forEach(function(doc){
+        myBlogArr.push(doc.data());
+      });
+
+      console.log(doc.data());
 
 
     }

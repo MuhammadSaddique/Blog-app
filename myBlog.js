@@ -14,7 +14,7 @@ window.addEventListener("load", async function () {
       return;
     }else{
 
-      const bolg = collection(db, "cities");
+      var  bolgRef = collection(db, "blogs");
 
       // Create a query against the collection.
       const q = query(citiesRef, where("state", "==", "CA"));

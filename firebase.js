@@ -11,6 +11,7 @@ import {
   getDocs,
   query, 
   where, 
+  doc,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -35,4 +36,4 @@ var db = getFirestore(app);
 
 
 
-export{addDoc, collection, getDocs, db , query , where}
+export{addDoc, collection, getDocs, db , query , doc , where}

@@ -71,7 +71,7 @@ window.addEventListener("load",async function () {
   })
   console.log(BlogArr , "arr");
 
-
+// for loop
   for(var value of BlogArr){ 
     if(value.isPrivate){
 

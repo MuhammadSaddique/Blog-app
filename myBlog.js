@@ -1,4 +1,5 @@
-import { collection, db, getDocs } from "./firebase.js";
+
+import { collection, db, getDocs, where,query,doc } from "./firebase.js";
 
 
 console.log("myblog Page");
@@ -13,34 +14,51 @@ window.addEventListener("load", async function () {
       location.replace("./index.html");
       return;
     }else{
-
-      var  bolgRef = collection(db, "blogs");
-
-      // Create a query against the collection.
-      const q = query(citiesRef, where("state", "==", "CA"));
       
+  //     var BlogArr = [];
+  // const querySnapshot = await getDocs(collection(db,"blogs"));
+  // querySnapshot.forEach((doc) =>{
+  //     console.log(doc.data());
+  //     console.log(doc.id);
 
-// time is 39:44 in 3rd recording
+  //     if(uid === doc.data().uid){
+  //       BlogArr.push({
+  //         title:doc.data().title,
+  //         desc: doc.data().desc,
+  //         uid: doc.data().uid,
+  //         image: doc.data().image,
+  //         blogId: doc.id,
+  //         isPrivate: doc.data().isPrivate,
+  //       })
+  //        }
+
+
+
+  // })
+  // console.log(BlogArr , "arr");
 
 
 
 
-
-
-
-
-
-
-
-
-      const querySnapshot = await getDocs(collection(db,"blogs"));
-      var myBlogArr = [];
-      querySnapshot.forEach(function(doc){
-        myBlogArr.push(doc.data());
+      
+      // Create a query against the collection.
+      var q = query(collection(db, "blogs"), where("uid", "==", uid));
+  
+      const querySnapshot = await getDocs(q);
+      var myBLogArr = [];
+      querySnapshot.forEach(function (doc) {
+        //   console.log(doc.data());
+        var data = doc.data();
+        myBLogArr.push({
+          tilte: data.tilte,
+          desc: data.desc,
+          uid: data.uid,
+          image: data.image,
+          blogId: doc.id,
+          isPrivate: data.isPrivate,
+        });
       });
-
-      console.log(doc.data());
-
+      console.log(myBLogArr, "myBLogArr");
 
     }
   });

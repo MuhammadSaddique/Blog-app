@@ -67,7 +67,7 @@ window.addEventListener("load", async function () {
              value.image,
              value.blogId,
              value.isPrivate,
-           );   
+           )  
       }
     }
   });
@@ -94,7 +94,8 @@ window.addEventListener("load", async function () {
             <p class="card-text">
             ${desc}
             </p>
-            <a href="#" class="card-link ">Go SomeWhere</a>
+            <button class="btn btn-danger id=${id}  onclick="deleteBlog(this)">Delete</button>
+            <button class="btn btn-info id=${id} onclick="editBlog(this)">Edit</button>
           </div>
         </div>
         `
@@ -102,8 +103,21 @@ window.addEventListener("load", async function () {
   } 
 
 
+function deleteBlog(ele){
+  console.log("deleteBlog",ele);
+}
+
+function editBlog(){
+  console.log("editBlog");
+}
 
 
 
 
+
+
+
+
+window.deleteBlog = deleteBlog;
+window.editBlog = editBlog;
 

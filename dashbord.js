@@ -155,6 +155,11 @@ function renderCardUI(title,desc,image,id,isPrivate){
 }
 
 
+function logoutFunction(){
+  localStorage.clear();
+  window.location.replace("./index.html")
+}
+
 
 window.createBlog = createBlog;
-
+window.logoutFunction = logoutFunction;

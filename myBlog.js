@@ -1,5 +1,5 @@
 
-import { collection, db, getDocs, where,query,doc } from "./firebase.js";
+import { collection, db, getDocs, where,query,doc, deleteDoc } from "./firebase.js";
 
 
 console.log("myblog Page");
@@ -31,9 +31,6 @@ window.addEventListener("load", async function () {
   //         isPrivate: doc.data().isPrivate,
   //       })
   //        }
-
-
-
   // })
   // console.log(BlogArr , "arr");
 
@@ -47,7 +44,6 @@ window.addEventListener("load", async function () {
       const querySnapshot = await getDocs(q);
       var myBLogArr = [];
       querySnapshot.forEach(function (doc) {
-        //   console.log(doc.data());
         var data = doc.data();
         myBLogArr.push({
           title:data.title,
@@ -94,8 +90,8 @@ window.addEventListener("load", async function () {
             <p class="card-text">
             ${desc}
             </p>
-            <button class="btn btn-danger id=${id}  onclick="deleteBlog(this)">Delete</button>
-            <button class="btn btn-info id=${id} onclick="editBlog(this)">Edit</button>
+            <button class="btn btn-danger" id=${id}  onclick="deleteBlog(this)">Delete</button>
+      <button class="btn btn-info"  id=${id} onclick="editBlog(this)">Edit</button>
           </div>
         </div>
         `
@@ -103,15 +99,20 @@ window.addEventListener("load", async function () {
   } 
 
 
-function deleteBlog(ele){
-  console.log("deleteBlog",ele);
+async  function deleteBlog(ele){
+  console.log("deleteBlog",ele.id);
+  var blogId = ele.id;
+  await deleteDoc(doc(db, "blogs",blogId));
 }
 
 function editBlog(){
   console.log("editBlog");
 }
 
-
+function logoutFunction(){
+  localStorage.clear();
+  window.location.replace("./index.html")
+}
 
 
 
@@ -120,4 +121,5 @@ function editBlog(){
 
 window.deleteBlog = deleteBlog;
 window.editBlog = editBlog;
+window.logoutFunction = logoutFunction;
 

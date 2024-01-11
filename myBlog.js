@@ -50,7 +50,7 @@ window.addEventListener("load", async function () {
         //   console.log(doc.data());
         var data = doc.data();
         myBLogArr.push({
-          tilte: data.tilte,
+          title:data.title,
           desc: data.desc,
           uid: data.uid,
           image: data.image,
@@ -62,3 +62,39 @@ window.addEventListener("load", async function () {
 
     }
   });
+
+
+
+
+  function renderCardUI(title,desc,image,id,isPrivate){
+    // console.log("UI is Private",isPrivate);
+    var lockValue = "";
+    if(isPrivate){
+      lockValue = `<i class="fa fa-lock" aria-hidden="true"></i>`;
+    }else{
+      lockValue = "";
+    }
+  
+  
+  
+    var UI = `
+    <div class="card" style="width: 18rem;">
+          <img src="https://picsum.photos/300/200" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">${title} ${lockValue} </h5>
+            <p class="card-text">
+            ${desc}
+            </p>
+            <a href="#" class="card-link ">Go SomeWhere</a>
+          </div>
+        </div>
+        `
+        return UI;
+  }
+
+
+
+
+
+
+

@@ -3,7 +3,7 @@ import { collection, db, getDocs, where,query,doc } from "./firebase.js";
 
 
 console.log("myblog Page");
-
+ var parent = document.getElementById("parent")
 
 window.addEventListener("load", async function () {
     console.log("blog load");
@@ -60,6 +60,15 @@ window.addEventListener("load", async function () {
       });
       console.log(myBLogArr, "myBLogArr");
 
+      for(var value of myBLogArr){
+          parent.innerHTML += renderCardUI(
+            value.title,
+             value.desc,
+             value.image,
+             value.blogId,
+             value.isPrivate,
+           );   
+      }
     }
   });
 
@@ -90,7 +99,7 @@ window.addEventListener("load", async function () {
         </div>
         `
         return UI;
-  }
+  } 
 
 
 

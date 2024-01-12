@@ -147,13 +147,24 @@ function renderCardUI(title,desc,image,id,isPrivate){
           <p class="card-text">
           ${desc}
           </p>
-          <a href="#" class="card-link ">Go SomeWhere</a>
+          <button class="btn btn-danger" id=${id}  onclick="deleteBlog(this)">Delete</button>
+      <button class="btn btn-info"  id=${id} onclick="editBlog(this)">Edit</button>
+
         </div>
       </div>
       `
       return UI;
 }
 
+async  function deleteBlog(ele){
+  console.log("deleteBlog",ele.id);
+  var blogId = ele.id;
+  await deleteDoc(doc(db, "blogs",blogId));
+}
+
+function editBlog(){
+  console.log("editBlog");
+}
 
 function logoutFunction(){
   localStorage.clear();
@@ -163,3 +174,5 @@ function logoutFunction(){
 
 window.createBlog = createBlog;
 window.logoutFunction = logoutFunction;
+window.editBlog = editBlog;
+window.deleteBlog = deleteBlog;

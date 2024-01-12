@@ -55,17 +55,23 @@ window.addEventListener("load", async function () {
         });
       });
       console.log(myBLogArr, "myBLogArr");
+      if(myBLogArr.length >0){
+        for(var value of myBLogArr){
+            parent.innerHTML += renderCardUI(
+              value.title,
+               value.desc,
+               value.image,
+               value.blogId,
+               value.isPrivate,
+             )  
+        }
 
-      for(var value of myBLogArr){
-          parent.innerHTML += renderCardUI(
-            value.title,
-             value.desc,
-             value.image,
-             value.blogId,
-             value.isPrivate,
-           )  
+      }else{
+        parent.innerHTML = "<h1>No Post Found</h1>"
       }
     }
+
+
   });
 
 

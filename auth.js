@@ -86,7 +86,12 @@ function loginFunc() {
       var docSnap = await getDoc(docRef);
       
       if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
+      console.log("Document data:", docSnap.data());
+      localStorage.setItem("uid", success.user.uid);
+      localStorage.setItem(userData, JSON.stringify(docSnap.data()));
+      alert("successfully login");
+      window.location.replace("./dashbord.html");
+
       } else {
         alert("Something Went Wrong")
         // docSnap.data() will be undefined in this case
@@ -95,10 +100,6 @@ function loginFunc() {
 
       var userData
 
-
-      // localStorage.setItem("uid", success.user.uid);
-      // alert("successfully login");
-      // window.location.replace("./dashbord.html");
     })
     .catch(function (error) {
       console.log(error.code, "error");

@@ -17,6 +17,14 @@ import {
   getDoc,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -36,7 +44,28 @@ var app = initializeApp(firebaseConfig);
 
 // Initialize Cloud Firestore and get a reference to the service
 var db = getFirestore(app);
+const storage = getStorage();
 
 
 
-export{addDoc, collection, getDocs, db , query , doc , where, deleteDoc, setDoc , getDoc}
+export {
+  addDoc,
+  collection,
+  getDocs,
+  db,
+  query,
+  where,
+  deleteDoc,
+  doc,
+  setDoc,
+  getDoc,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+  storage,
+};
+
+
+
+

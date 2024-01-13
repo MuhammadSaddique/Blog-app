@@ -110,9 +110,14 @@ window.addEventListener("load",async function () {
 async function createBlog(){
 
 var blogImage = document.getElementById("blogImage")
-console.log("blogImage",blogImage.files[0]);
-imageUpload(blogImage.files[0])
-// return
+var imageURL;
+if(blogImage.file[0]){
+  imageURL = await imageUpload(blogImage.file[0])
+}else{
+  imageURL = "https://picum.photos/200/300"
+}
+// imageUpload(blogImage.files[0])
+return
     console.log(createBlog,);
     var title = document.getElementById("title");
     var desc = document.getElementById("desc");
@@ -132,9 +137,8 @@ imageUpload(blogImage.files[0])
     const docRef = await addDoc(collection(db,"blogs"),blogObj);
     parent.innerHTML += renderCardUI(title.value, desc.value, "", docRef.id,privatePost);
     myModal.hide();
-    
-    title.value = ""
-    desc.value = ""
+    title.value = "";
+    desc.value = "";
     console.log(docRef,"docRef");
 }
 
